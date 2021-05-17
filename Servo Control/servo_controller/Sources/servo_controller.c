@@ -15,12 +15,13 @@ void servo_init(void) {
   PWMDTY45 = 2250;   // 1.5ms pulse length (centered)
   PWMDTY67 = 2250;   // 1.5ms pulse length (centered)
   PWMCTL = 0xC0;     // concatenate to PP45 and PP67 
+  PWME = 0xA0;       // enables PP45 and PP67
 }
 
 
 void pan(int start_angle, int end_angle, int angle_step) {
   // convert angles to duty cycles
-  double start_dty, end_dty, dty_step;
+  int start_dty, end_dty, dty_step;
   int i, p;
   start_dty = start_angle*10 + 2250;
   end_dty = end_angle*10 + 2250;
@@ -40,7 +41,7 @@ void pan(int start_angle, int end_angle, int angle_step) {
 
 void tilt(int start_angle, int end_angle, int angle_step) {
   // convert angles to duty cycles
-  double start_dty, end_dty, dty_step;
+  int start_dty, end_dty, dty_step;
   int i, p;
   start_dty = start_angle*10 + 2250;
   end_dty = end_angle*10 + 2250;
@@ -60,7 +61,7 @@ void tilt(int start_angle, int end_angle, int angle_step) {
 
 void servo_goto(int pan_angle, int tilt_angle){
   // convert angles to duty cycles
-  double pan_dty, tilt_dty;
+  int pan_dty, tilt_dty;
   pan_dty = pan_angle*10 + 2250;
   tilt_dty = tilt_angle*10 + 2250; 
   
