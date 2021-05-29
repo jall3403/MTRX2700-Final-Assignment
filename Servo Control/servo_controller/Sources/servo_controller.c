@@ -1,5 +1,5 @@
 #include "servo_controller.h"
-
+#include "timers.h"
 #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
 
@@ -22,7 +22,7 @@ void servo_init(void) {
 void pan(int start_angle, int end_angle, int angle_step) {
   // convert angles to duty cycles
   int start_dty, end_dty, dty_step;
-  int i, p;
+  int p;
   start_dty = start_angle*10 + 2250;
   end_dty = end_angle*10 + 2250;
   dty_step = angle_step*10;
@@ -31,10 +31,7 @@ void pan(int start_angle, int end_angle, int angle_step) {
   for(p = start_dty; p < end_dty; p+=dty_step){
     PWMDTY67 += dty_step;
     // Delay function
-    i=0; 
-    while(i < 10000){
-      i++;
-    }
+    delay_by_10ms(1);
   }    
 }
 
@@ -42,7 +39,7 @@ void pan(int start_angle, int end_angle, int angle_step) {
 void tilt(int start_angle, int end_angle, int angle_step) {
   // convert angles to duty cycles
   int start_dty, end_dty, dty_step;
-  int i, p;
+  int p;
   start_dty = start_angle*10 + 2250;
   end_dty = end_angle*10 + 2250;
   dty_step = angle_step*10;
@@ -51,10 +48,7 @@ void tilt(int start_angle, int end_angle, int angle_step) {
   for(p = start_dty; p < end_dty; p+=dty_step){
     PWMDTY45 += dty_step;
     // Delay function
-    i=0; 
-    while(i < 10000){
-      i++;
-    }
+    delay_by_10ms(1);
   }      
 }
 
