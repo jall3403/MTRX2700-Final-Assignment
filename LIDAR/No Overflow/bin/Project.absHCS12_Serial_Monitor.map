@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\mfor0878\Documents\lidar\bin\Project.absHCS12_Serial_Monitor.abs"
+PROGRAM "C:\Users\james\Documents\GitHub\MTRX2700-Final-Assignment\LIDAR\No Overflow\bin\Project.absHCS12_Serial_Monitor.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -33,7 +33,7 @@ Section Name                    Size  Type     From       To       Segment
 .init                             21     R     0xC000     0xC014   ROM_C000
 .startData                        10     R     0xC015     0xC01E   ROM_C000
 .copy                              2     R     0xC01F     0xC020   ROM_C000
-.text                            115     R   0x308000   0x308072   PAGE_30
+.text                            136     R   0x308000   0x308087   PAGE_30
 .stack                           256   R/W     0x1000     0x10FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -379,7 +379,7 @@ Section Name                    Size  Type     From       To       Segment
 .vectSeg341_vect                   2     R     0xFFFE     0xFFFF   .vectSeg341
 
 Summary of section sizes per section type:
-READ_ONLY (R):          96 (dec:      150)
+READ_ONLY (R):          AB (dec:      171)
 READ_WRITE (R/W):      100 (dec:      256)
 NO_INIT (N/I):         190 (dec:      400)
 
@@ -443,9 +443,9 @@ MODULE:                 -- mc9s12dg256.c.o --
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       2   .abs_section_4b
-     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TIE                                        4C       1       1       0   .abs_section_4c
      _TSCR2                                      4D       1       1       1   .abs_section_4d
-     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG1                                      4E       1       1       4   .abs_section_4e
      _TFLG2                                      4F       1       1       1   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
@@ -739,12 +739,12 @@ MODULE:                 -- mc9s12dg256.c.o --
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     Init_TC1                                308000       E      14       2   .text       
-     main                                    30800E      3C      60       2   .text       
+     Init_TC1                                308000      1B      27       2   .text       
+     main                                    30801B      44      68       2   .text       
 - VARIABLES:
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
-     Init                                    30804A      29      41       2   .text       
+     Init                                    30805F      29      41       2   .text       
      _Startup                                  C000      15      21       0   .init       
 - VARIABLES:
      _startupData                              C015       6       6       3   .startData  
@@ -756,7 +756,7 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12dg256.c.o                            400      0      0
-  main.c.o                                     0     74      0
+  main.c.o                                     0     95      0
   Start12.c.o                                  0     62      0
   other                                      256     12      2
 
@@ -1505,9 +1505,9 @@ OBJECT LIST SORTED BY ADDRESS
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       2   .abs_section_4b
-     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TIE                                        4C       1       1       0   .abs_section_4c
      _TSCR2                                      4D       1       1       1   .abs_section_4d
-     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG1                                      4E       1       1       4   .abs_section_4e
      _TFLG2                                      4F       1       1       1   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       2   .abs_section_52
@@ -1796,16 +1796,13 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
      _Startup                                  C000      15      21       0   .init       
-     Init_TC1                                308000       E      14       2   .text       
-     main                                    30800E      3C      60       2   .text       
-     Init                                    30804A      29      41       2   .text       
+     Init_TC1                                308000      1B      27       2   .text       
+     main                                    30801B      44      68       2   .text       
+     Init                                    30805F      29      41       2   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
-NOT USED PROCEDURES
-main.c.o:
-  Init_TC5 
 
 *********************************************************************************************
 COPYDOWN SECTION
@@ -1818,8 +1815,8 @@ Filling bytes inserted
 OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
 _Startup                  USES __SEG_END_SSTACK Init main 
-Init_TC1                  USES _TSCR1 _TSCR2 _TIOS _TIE 
-main                      USES Init_TC1 _DDRH _TCTL4 _TFLG1 _TFLG2 _TC1 
+Init_TC1                  USES _TSCR1 _TSCR2 _TIOS 
+main                      USES Init_TC1 _DDRH _TFLG1 _TCTL4 _TFLG2 _TC1 
 Init                      USES _startupData 
 
 *********************************************************************************************
@@ -1844,5 +1841,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 5
-Total size of all blocks to be downloaded: 150
+Total size of all blocks to be downloaded: 171
 
