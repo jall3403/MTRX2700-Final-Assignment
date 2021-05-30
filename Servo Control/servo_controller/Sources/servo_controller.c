@@ -16,6 +16,8 @@ void servo_init(void) {
   PWMDTY67 = 2250;   // 1.5ms pulse length (centered)
   PWMCTL = 0xC0;     // concatenate to PP45 and PP67 
   PWME = 0xA0;       // enables PP45 and PP67
+  TSCR1 = 0x90;
+  TSCR2 = 0x80;
 }
 
 
