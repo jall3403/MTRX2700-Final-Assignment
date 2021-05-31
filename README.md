@@ -26,10 +26,9 @@ The module contains the following functions:
 > - panning motion: `pan`
 > - tilting motion: `tilt`
 > - goto specified angle: `servo_goto`
-> - delay function: `delay_by_10ms`
 
 ### How to Operate
-First, to use the servo controller module, the `servo_init` function must be called to initialise the specific registers of the HCS12 microcontroller. Once the function returns, any function pertaining the the motion of the pan-tilt unit servos can be called at any time. To ensure each function has enough time for the servo motors to complete the motion required, the delay function `delay_by_10ms` should be used to create a buffer period where the servo can finish its operation. The larger the motion a function is called to do, the longer buffer period should be. The functions `pan` and `tilt` require an initial and final angle relative to the servo's center position as well as an increment angle that the servo increments by as it motions from the initial to final position. For the function `servo_goto`, the pan and tilt angles are all that are required.  
+First, to use the servo controller module, the `servo_init` function must be called to initialise the specific registers of the HCS12 microcontroller. Once the function returns, any function pertaining the the motion of the pan-tilt unit servos can be called at any time. To ensure each function has enough time for the servo motors to complete the motion required, the delay function from timers.h should be used to create a buffer period where the servo can finish its operation. The larger the motion a function is called to do, the longer buffer period should be. The functions `pan` and `tilt` require an initial and final angle relative to the servo's center position as well as an increment angle that the servo increments by as it motions from the initial to final position. For the function `servo_goto`, the pan and tilt angles are all that are required.  
 
 ### Testing
 This code was tested by providing dummy code that simulates possible servo postioning maneuvers that might be required during actual operation of the software. This allowed correct for determining appropriate buffer periods and speeds for which the LiDAR module can effectively operate in. 
@@ -47,7 +46,7 @@ This module requires no inputs. The LiDAR functions trigger a measurment which i
   - `LIDAR`
   
 ### How to Operate
-Just call function and it will return a distance value in the direction its facing.
+Just call function and it will return a distance value in the direction its facing. The data must be tranmitted via serial for it to be processed by the matlab module.
 
 ### Testing
 It was tested by measuring a predetermined distance of 30cm and then comparing to the value it returned. It was either too far or way too short, not working properly not sure why.
@@ -61,7 +60,10 @@ The MATLAB module deals with the processing of the LiDAR measurements into a plo
 The only input this module requires is the serial receiving of the LiDAR measurements. The correct COM port and baud rate must be selected for successful serial communication. 
 
 ### Functions
+The MATLAB LiDAR processing module encompasses one large function which reads the serial data, organises it into a matrix and plots the data accordingly. 
 
 ### How to Operate
+Once serial data has been recieved no user input is required. 
 
 ### Testing
+This module was tested by sending dummy data through the serial port. The plotted data was then referenced to a known result to see if it produced the correct results. 
