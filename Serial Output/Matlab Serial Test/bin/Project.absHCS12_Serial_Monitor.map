@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\james\Desktop\lidar\Matlab Serial Test\bin\Project.absHCS12_Serial_Monitor.abs"
+PROGRAM "C:\Users\james\Documents\GitHub\MTRX2700-Final-Assignment\Serial Output\Matlab Serial Test\bin\Project.absHCS12_Serial_Monitor.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -27,7 +27,7 @@ _startupData is allocated at 0xC015 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0x1100     213
-  _Copy    *toCopyDownBeg 0xC236
+  _Copy    *toCopyDownBeg 0xC23E
 } _startupData;
 
 *********************************************************************************************
@@ -37,10 +37,10 @@ Section Name                    Size  Type     From       To       Segment
 .init                             21     R     0xC000     0xC014   ROM_C000
 .startData                        10     R     0xC015     0xC01E   ROM_C000
 .rodata                          116     R     0xC01F     0xC092   ROM_C000
-.rodata1                           4     R     0xC093     0xC096   ROM_C000
-NON_BANKED                       415     R     0xC097     0xC235   ROM_C000
-.copy                             10     R     0xC236     0xC23F   ROM_C000
-.text                           1557     R   0x308000   0x308614   PAGE_30
+.rodata1                          12     R     0xC093     0xC09E   ROM_C000
+NON_BANKED                       415     R     0xC09F     0xC23D   ROM_C000
+.copy                             10     R     0xC23E     0xC247   ROM_C000
+.text                           1594     R   0x308000   0x308639   PAGE_30
 .stack                           256   R/W     0x1000     0x10FF   RAM
 .data                              4   R/W     0x1100     0x1103   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -391,7 +391,7 @@ NON_BANKED                       415     R     0xC097     0xC235   ROM_C000
 .vectSeg343_vect                   2     R     0xFFFE     0xFFFF   .vectSeg343
 
 Summary of section sizes per section type:
-READ_ONLY (R):         85B (dec:     2139)
+READ_ONLY (R):         888 (dec:     2184)
 READ_WRITE (R/W):      1D5 (dec:      469)
 NO_INIT (N/I):         190 (dec:      400)
 
@@ -751,12 +751,14 @@ MODULE:                 -- mc9s12dg256.c.o --
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                    308000      64     100       2   .text       
+     main                                    308000      89     137       2   .text       
 - VARIABLES:
      STRING..u..1                              C093       4       4       1   .rodata1    
+     STRING..u..2                              C097       4       4       1   .rodata1    
+     STRING..u..3                              C09B       4       4       1   .rodata1    
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
-     Init                                    308064      29      41       2   .text       
+     Init                                    308089      29      41       2   .text       
      _Startup                                  C000      15      21       0   .init       
 - VARIABLES:
      _startupData                              C015       6       6       3   .startData  
@@ -764,10 +766,10 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                          1100       0       0       1               
 MODULE:                 -- PRINTF.C.o (ansibi.lib) --
 - PROCEDURES:
-     vprintf                                 30808D     47B    1147      57   .text       
-     _out                                    308508       C      12       2   .text       
-     deposit_char                            308514       F      15       3   .text       
-     sprintf                                 308523      2F      47       2   .text       
+     vprintf                                 3080B2     47B    1147      57   .text       
+     _out                                    30852D       C      12       2   .text       
+     deposit_char                            308539       F      15       3   .text       
+     sprintf                                 308548      2F      47       6   .text       
 - VARIABLES:
      pow10                                     C01F      28      40       4   .rodata     
      pow16                                     C047      20      32       4   .rodata     
@@ -775,23 +777,23 @@ MODULE:                 -- PRINTF.C.o (ansibi.lib) --
      pbuf                                      1104       7       7      16   .bss        
 MODULE:                 -- rtshc12.c.o (ansibi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   C097      15      21       3   NON_BANKED  
-     _LNEG                                     C0AC       D      13       1   NON_BANKED  
-     _lDivMod                                  C0B9      BE     190       1   NON_BANKED  
-     _LDIVU                                    C177       E      14       2   NON_BANKED  
-     _ILSEXT                                   C185       7       7       2   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C18C       5       5       1   NON_BANKED  
-     _CASE_SEARCH_8                            C191      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C1A8      1A      26       1   NON_BANKED  
+     _LCMP_P                                   C09F      15      21       3   NON_BANKED  
+     _LNEG                                     C0B4       D      13       1   NON_BANKED  
+     _lDivMod                                  C0C1      BE     190       1   NON_BANKED  
+     _LDIVU                                    C17F       E      14       2   NON_BANKED  
+     _ILSEXT                                   C18D       7       7       2   NON_BANKED  
+     _CASE_DIRECT_BYTE                         C194       5       5       1   NON_BANKED  
+     _CASE_SEARCH_8                            C199      17      23       1   NON_BANKED  
+     _CASE_SEARCH_8_BYTE                       C1B0      1A      26       1   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- serial.c.o --
 - PROCEDURES:
-     initialise_serial                       308552      54      84       2   .text       
-     set_serial                              3085A6      1B      27       2   .text       
-     copy_string                             3085C1      29      41       2   .text       
-     output_string                           3085EA      2B      43       2   .text       
-     serial_interrupt_0                        C1C2      3A      58       1   NON_BANKED  
-     serial_interrupt_1                        C1FC      3A      58       1   NON_BANKED  
+     initialise_serial                       308577      54      84       2   .text       
+     set_serial                              3085CB      1B      27       2   .text       
+     copy_string                             3085E6      29      41       2   .text       
+     output_string                           30860F      2B      43       2   .text       
+     serial_interrupt_0                        C1CA      3A      58       1   NON_BANKED  
+     serial_interrupt_1                        C204      3A      58       1   NON_BANKED  
 - VARIABLES:
      str_ptr                                   1100       2       2       9   .data       
      input_str_ptr                             1102       2       2       8   .data       
@@ -807,7 +809,7 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12dg256.c.o                            400      0      0
-  main.c.o                                     0    100      4
+  main.c.o                                     0    137     12
   Start12.c.o                                  0     62      0
   PRINTF.C.o (ansibi.lib)                      7   1221    116
   rtshc12.c.o (ansibi.lib)                     0    299      0
@@ -829,7 +831,7 @@ SECTION: ".init"
 SECTION: ".rodata"
   pow10 pow16 pow8 
 SECTION: ".rodata1"
-  STRING..u..1 
+  STRING..u..1 STRING..u..2 STRING..u..3 
 SECTION: "NON_BANKED"
   _LCMP_P _LNEG _lDivMod _LDIVU _ILSEXT _CASE_DIRECT_BYTE _CASE_SEARCH_8 
   _CASE_SEARCH_8_BYTE serial_interrupt_0 serial_interrupt_1 
@@ -1879,28 +1881,30 @@ OBJECT LIST SORTED BY ADDRESS
      pow16                                     C047      20      32       4   .rodata     
      pow8                                      C067      2C      44       4   .rodata     
      STRING..u..1                              C093       4       4       1   .rodata1    
-     _LCMP_P                                   C097      15      21       3   NON_BANKED  
-     _LNEG                                     C0AC       D      13       1   NON_BANKED  
-     _lDivMod                                  C0B9      BE     190       1   NON_BANKED  
-     _LDIVU                                    C177       E      14       2   NON_BANKED  
-     _ILSEXT                                   C185       7       7       2   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C18C       5       5       1   NON_BANKED  
-     _CASE_SEARCH_8                            C191      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C1A8      1A      26       1   NON_BANKED  
-     serial_interrupt_0                        C1C2      3A      58       1   NON_BANKED  
-     serial_interrupt_1                        C1FC      3A      58       1   NON_BANKED  
+     STRING..u..2                              C097       4       4       1   .rodata1    
+     STRING..u..3                              C09B       4       4       1   .rodata1    
+     _LCMP_P                                   C09F      15      21       3   NON_BANKED  
+     _LNEG                                     C0B4       D      13       1   NON_BANKED  
+     _lDivMod                                  C0C1      BE     190       1   NON_BANKED  
+     _LDIVU                                    C17F       E      14       2   NON_BANKED  
+     _ILSEXT                                   C18D       7       7       2   NON_BANKED  
+     _CASE_DIRECT_BYTE                         C194       5       5       1   NON_BANKED  
+     _CASE_SEARCH_8                            C199      17      23       1   NON_BANKED  
+     _CASE_SEARCH_8_BYTE                       C1B0      1A      26       1   NON_BANKED  
+     serial_interrupt_0                        C1CA      3A      58       1   NON_BANKED  
+     serial_interrupt_1                        C204      3A      58       1   NON_BANKED  
      _Vector_21                                FFD4       2       2       0   .abs_section_ffd4
      _Vector_20                                FFD6       2       2       0   .abs_section_ffd6
-     main                                    308000      64     100       2   .text       
-     Init                                    308064      29      41       2   .text       
-     vprintf                                 30808D     47B    1147      57   .text       
-     _out                                    308508       C      12       2   .text       
-     deposit_char                            308514       F      15       3   .text       
-     sprintf                                 308523      2F      47       2   .text       
-     initialise_serial                       308552      54      84       2   .text       
-     set_serial                              3085A6      1B      27       2   .text       
-     copy_string                             3085C1      29      41       2   .text       
-     output_string                           3085EA      2B      43       2   .text       
+     main                                    308000      89     137       2   .text       
+     Init                                    308089      29      41       2   .text       
+     vprintf                                 3080B2     47B    1147      57   .text       
+     _out                                    30852D       C      12       2   .text       
+     deposit_char                            308539       F      15       3   .text       
+     sprintf                                 308548      2F      47       6   .text       
+     initialise_serial                       308577      54      84       2   .text       
+     set_serial                              3085CB      1B      27       2   .text       
+     copy_string                             3085E6      29      41       2   .text       
+     output_string                           30860F      2B      43       2   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -1923,16 +1927,16 @@ rtshc12.c.o (ansibi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC236 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xC23E ---- SIZE       4 ---
 Filling bytes inserted
  00041100
-------- ROM-ADDRESS: 0xC23A ---- RAM-ADDRESS: 0x1100 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC242 ---- RAM-ADDRESS: 0x1100 ---- SIZE       2 ---
 Name of initialized Object : str_ptr
  110D
-------- ROM-ADDRESS: 0xC23C ---- RAM-ADDRESS: 0x1102 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC244 ---- RAM-ADDRESS: 0x1102 ---- SIZE       2 ---
 Name of initialized Object : input_str_ptr
  1171
-------- ROM-ADDRESS: 0xC23E ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC246 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1949,7 +1953,8 @@ serial_interrupt_1        USES _SCI1SR1 _SCI1DRL input_str_ptr SCI1_received
                                 str_ptr _SCI1CR2 
 _Vector_21                USES serial_interrupt_1 
 _Vector_20                USES serial_interrupt_0 
-main                      USES set_serial STRING..u..1 sprintf output_string 
+main                      USES set_serial STRING..u..1 sprintf STRING..u..2 
+                                STRING..u..3 output_string 
 Init                      USES _startupData 
 vprintf                   USES vprintf _CASE_SEARCH_8_BYTE _CASE_DIRECT_BYTE 
                                 _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P pow16 pow10 
@@ -2024,5 +2029,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 8
-Total size of all blocks to be downloaded: 2139
+Total size of all blocks to be downloaded: 2184
 

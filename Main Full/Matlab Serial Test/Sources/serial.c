@@ -1,5 +1,6 @@
 #include "derivative.h"
 #include "serial.h"
+#include "servo_controller.h"
 
 unsigned char serial_string[100];
 unsigned char *str_ptr = serial_string;

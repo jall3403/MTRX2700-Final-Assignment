@@ -11,20 +11,21 @@ void main(void) {
   
   Serial_Port serial_port1;
   char string[10];
-  int length[3];
-  int i;
+  int i,x,y;
   
-  set_serial(&serial_port1, 1, 9600, 0b01001100, 0b00101100); 
-
+  set_serial(&serial_port1, 1, 9600, 0b01001100, 0b00101100);
 	EnableInterrupts;
-	
-	length[0]=200;
-	length[1]=4;
-	length[2]=4000;
-	
-  for(i=0;i<3;i++)
+  x = 100;
+  y = 100;
+  
+  sprintf(string,"%u\n",x);
+  output_string(1,string);
+  
+  sprintf(string,"%u\n",y);
+  output_string(1,string);  
+  for(i=0;i<x*y;i++)
     {
-  	  sprintf(string,"%u\n",length[i]);
+  	  sprintf(string,"%u\n",i);
   	  output_string(1,string); 
     }
 

@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\james\Desktop\lidar\Matlab Serial Test\bin\Project.absHCS12_Serial_Monitor.abs"
+PROGRAM "C:\Users\james\Documents\GitHub\MTRX2700-Final-Assignment\Main Full\Matlab Serial Test\bin\Project.absHCS12_Serial_Monitor.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -15,9 +15,9 @@ FILE SECTION
 mc9s12dg256.c.o                         Model: BANKED,        Lang: ANSI-C
 main.c.o                                Model: BANKED,        Lang: ANSI-C
 Start12.c.o                             Model: BANKED,        Lang: ANSI-C
-PRINTF.C.o (ansibi.lib)                 Model: BANKED,        Lang: ANSI-C
 rtshc12.c.o (ansibi.lib)                Model: BANKED,        Lang: ANSI-C
 serial.c.o                              Model: BANKED,        Lang: ANSI-C
+servo_controller.c.o                    Model: BANKED,        Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -26,8 +26,8 @@ Entry point: 0xC000 (_Startup)
 _startupData is allocated at 0xC015 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1100     213
-  _Copy    *toCopyDownBeg 0xC236
+  _Range   pZeroOut       0x1300     206
+  _Copy    *toCopyDownBeg 0xC180
 } _startupData;
 
 *********************************************************************************************
@@ -36,13 +36,11 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             21     R     0xC000     0xC014   ROM_C000
 .startData                        10     R     0xC015     0xC01E   ROM_C000
-.rodata                          116     R     0xC01F     0xC092   ROM_C000
-.rodata1                           4     R     0xC093     0xC096   ROM_C000
-NON_BANKED                       415     R     0xC097     0xC235   ROM_C000
-.copy                             10     R     0xC236     0xC23F   ROM_C000
-.text                           1557     R   0x308000   0x308614   PAGE_30
-.stack                           256   R/W     0x1000     0x10FF   RAM
-.data                              4   R/W     0x1100     0x1103   RAM
+NON_BANKED                       353     R     0xC01F     0xC17F   ROM_C000
+.copy                             10     R     0xC180     0xC189   ROM_C000
+.text                            378     R   0x308000   0x308179   PAGE_30
+.stack                           768   R/W     0x1000     0x12FF   RAM
+.data                              4   R/W     0x1300     0x1303   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -386,13 +384,13 @@ NON_BANKED                       415     R     0xC097     0xC235   ROM_C000
 .abs_section_2be                   2   N/I      0x2BE      0x2BF   .absSeg340
 .abs_section_ffd6                  2     R     0xFFD6     0xFFD7   .absSeg341
 .abs_section_ffd4                  2     R     0xFFD4     0xFFD5   .absSeg342
-.bss                               9   R/W     0x1104     0x110C   RAM
-.common                          200   R/W     0x110D     0x11D4   RAM
+.bss                               2   R/W     0x1304     0x1305   RAM
+.common                          200   R/W     0x1306     0x13CD   RAM
 .vectSeg343_vect                   2     R     0xFFFE     0xFFFF   .vectSeg343
 
 Summary of section sizes per section type:
-READ_ONLY (R):         85B (dec:     2139)
-READ_WRITE (R/W):      1D5 (dec:      469)
+READ_ONLY (R):         30A (dec:      778)
+READ_WRITE (R/W):      3CE (dec:      974)
 NO_INIT (N/I):         190 (dec:      400)
 
 *********************************************************************************************
@@ -449,14 +447,14 @@ MODULE:                 -- mc9s12dg256.c.o --
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TSCR2                                      4D       1       1       1   .abs_section_4d
      _TFLG1                                      4E       1       1       0   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
@@ -474,23 +472,23 @@ MODULE:                 -- mc9s12dg256.c.o --
      _ATD0STAT1                                  8B       1       1       0   .abs_section_8b
      _ATD0DIEN                                   8D       1       1       0   .abs_section_8d
      _PORTAD0                                    8F       1       1       0   .abs_section_8f
-     _PWME                                       A0       1       1       0   .abs_section_a0
-     _PWMPOL                                     A1       1       1       0   .abs_section_a1
-     _PWMCLK                                     A2       1       1       0   .abs_section_a2
-     _PWMPRCLK                                   A3       1       1       0   .abs_section_a3
-     _PWMCAE                                     A4       1       1       0   .abs_section_a4
-     _PWMCTL                                     A5       1       1       0   .abs_section_a5
+     _PWME                                       A0       1       1       1   .abs_section_a0
+     _PWMPOL                                     A1       1       1       1   .abs_section_a1
+     _PWMCLK                                     A2       1       1       1   .abs_section_a2
+     _PWMPRCLK                                   A3       1       1       1   .abs_section_a3
+     _PWMCAE                                     A4       1       1       1   .abs_section_a4
+     _PWMCTL                                     A5       1       1       1   .abs_section_a5
      _PWMSCLA                                    A8       1       1       0   .abs_section_a8
      _PWMSCLB                                    A9       1       1       0   .abs_section_a9
      _PWMSDN                                     C4       1       1       0   .abs_section_c4
      _SCI0CR1                                    CA       1       1       1   .abs_section_ca
-     _SCI0CR2                                    CB       1       1       3   .abs_section_cb
+     _SCI0CR2                                    CB       1       1       2   .abs_section_cb
      _SCI0SR1                                    CC       1       1       2   .abs_section_cc
      _SCI0SR2                                    CD       1       1       0   .abs_section_cd
      _SCI0DRH                                    CE       1       1       0   .abs_section_ce
      _SCI0DRL                                    CF       1       1       3   .abs_section_cf
      _SCI1CR1                                    D2       1       1       1   .abs_section_d2
-     _SCI1CR2                                    D3       1       1       3   .abs_section_d3
+     _SCI1CR2                                    D3       1       1       2   .abs_section_d3
      _SCI1SR1                                    D4       1       1       2   .abs_section_d4
      _SCI1SR2                                    D5       1       1       0   .abs_section_d5
      _SCI1DRH                                    D6       1       1       0   .abs_section_d6
@@ -727,12 +725,12 @@ MODULE:                 -- mc9s12dg256.c.o --
      _PWMCNT67                                   B2       2       2       0   .abs_section_b2
      _PWMPER01                                   B4       2       2       0   .abs_section_b4
      _PWMPER23                                   B6       2       2       0   .abs_section_b6
-     _PWMPER45                                   B8       2       2       0   .abs_section_b8
-     _PWMPER67                                   BA       2       2       0   .abs_section_ba
+     _PWMPER45                                   B8       2       2       1   .abs_section_b8
+     _PWMPER67                                   BA       2       2       1   .abs_section_ba
      _PWMDTY01                                   BC       2       2       0   .abs_section_bc
      _PWMDTY23                                   BE       2       2       0   .abs_section_be
-     _PWMDTY45                                   C0       2       2       0   .abs_section_c0
-     _PWMDTY67                                   C2       2       2       0   .abs_section_c2
+     _PWMDTY45                                   C0       2       2       2   .abs_section_c0
+     _PWMDTY67                                   C2       2       2       2   .abs_section_c2
      _SCI0BD                                     C8       2       2       2   .abs_section_c8
      _SCI1BD                                     D0       2       2       2   .abs_section_d0
      _ATD1CTL23                                 122       2       2       0   .abs_section_122
@@ -751,88 +749,71 @@ MODULE:                 -- mc9s12dg256.c.o --
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                    308000      64     100       2   .text       
+     main                                    308000      6E     110       2   .text       
 - VARIABLES:
-     STRING..u..1                              C093       4       4       1   .rodata1    
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
-     Init                                    308064      29      41       2   .text       
+     Init                                    30806E      29      41       2   .text       
      _Startup                                  C000      15      21       0   .init       
 - VARIABLES:
      _startupData                              C015       6       6       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          1100       0       0       1               
-MODULE:                 -- PRINTF.C.o (ansibi.lib) --
-- PROCEDURES:
-     vprintf                                 30808D     47B    1147      57   .text       
-     _out                                    308508       C      12       2   .text       
-     deposit_char                            308514       F      15       3   .text       
-     sprintf                                 308523      2F      47       2   .text       
-- VARIABLES:
-     pow10                                     C01F      28      40       4   .rodata     
-     pow16                                     C047      20      32       4   .rodata     
-     pow8                                      C067      2C      44       4   .rodata     
-     pbuf                                      1104       7       7      16   .bss        
+     __SEG_END_SSTACK                          1300       0       0       1               
 MODULE:                 -- rtshc12.c.o (ansibi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   C097      15      21       3   NON_BANKED  
-     _LNEG                                     C0AC       D      13       1   NON_BANKED  
-     _lDivMod                                  C0B9      BE     190       1   NON_BANKED  
-     _LDIVU                                    C177       E      14       2   NON_BANKED  
-     _ILSEXT                                   C185       7       7       2   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C18C       5       5       1   NON_BANKED  
-     _CASE_SEARCH_8                            C191      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C1A8      1A      26       1   NON_BANKED  
+     _LCMP_P                                   C01F      15      21       1   NON_BANKED  
+     _LINC                                     C034       5       5       1   NON_BANKED  
+     _lDivMod                                  C039      BE     190       1   NON_BANKED  
+     _LDIVU                                    C0F7       E      14       2   NON_BANKED  
+     _ILSEXT                                   C105       7       7       1   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- serial.c.o --
 - PROCEDURES:
-     initialise_serial                       308552      54      84       2   .text       
-     set_serial                              3085A6      1B      27       2   .text       
-     copy_string                             3085C1      29      41       2   .text       
-     output_string                           3085EA      2B      43       2   .text       
-     serial_interrupt_0                        C1C2      3A      58       1   NON_BANKED  
-     serial_interrupt_1                        C1FC      3A      58       1   NON_BANKED  
+     initialise_serial                       308097      54      84       2   .text       
+     set_serial                              3080EB      1B      27       2   .text       
+     serial_interrupt_0                        C10C      3A      58       1   NON_BANKED  
+     serial_interrupt_1                        C146      3A      58       1   NON_BANKED  
 - VARIABLES:
-     str_ptr                                   1100       2       2       9   .data       
-     input_str_ptr                             1102       2       2       8   .data       
-     SCI1_received                             110B       1       1       1   .bss        
-     SCI0_received                             110C       1       1       1   .bss        
+     str_ptr                                   1300       2       2       6   .data       
+     input_str_ptr                             1302       2       2       8   .data       
+     SCI1_received                             1304       1       1       1   .bss        
+     SCI0_received                             1305       1       1       1   .bss        
      _Vector_20                                FFD6       2       2       0   .abs_section_ffd6
      _Vector_21                                FFD4       2       2       0   .abs_section_ffd4
-     serial_string                             110D      64     100       5   .common     
-     input_string                              1171      64     100       1   .common     
+     serial_string                             1306      64     100       1   .common     
+     input_string                              136A      64     100       1   .common     
+MODULE:                 -- servo_controller.c.o --
+- PROCEDURES:
+     servo_init                              308106      2A      42       2   .text       
+     servo_goto                              308130      19      25       4   .text       
+     delay_in_ms                             308149      31      49       2   .text       
+- VARIABLES:
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12dg256.c.o                            400      0      0
-  main.c.o                                     0    100      4
+  main.c.o                                     0    110      0
   Start12.c.o                                  0     62      0
-  PRINTF.C.o (ansibi.lib)                      7   1221    116
-  rtshc12.c.o (ansibi.lib)                     0    299      0
-  serial.c.o                                 206    311      4
-  other                                      256     12     10
+  rtshc12.c.o (ansibi.lib)                     0    237      0
+  serial.c.o                                 206    227      4
+  servo_controller.c.o                         0    116      0
+  other                                      768     12     10
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  main Init vprintf _out deposit_char sprintf initialise_serial set_serial 
-  copy_string output_string 
+  main Init initialise_serial set_serial servo_init servo_goto delay_in_ms 
 SECTION: ".data"
   str_ptr input_str_ptr 
 SECTION: ".bss"
-  pbuf SCI1_received SCI0_received 
+  SCI1_received SCI0_received 
 SECTION: ".init"
   _Startup 
-SECTION: ".rodata"
-  pow10 pow16 pow8 
-SECTION: ".rodata1"
-  STRING..u..1 
 SECTION: "NON_BANKED"
-  _LCMP_P _LNEG _lDivMod _LDIVU _ILSEXT _CASE_DIRECT_BYTE _CASE_SEARCH_8 
-  _CASE_SEARCH_8_BYTE serial_interrupt_0 serial_interrupt_1 
+  _LCMP_P _LINC _lDivMod _LDIVU _ILSEXT serial_interrupt_0 serial_interrupt_1 
 SECTION: ".abs_section_8"
   _PORTE 
 SECTION: ".abs_section_9"
@@ -1571,14 +1552,14 @@ OBJECT LIST SORTED BY ADDRESS
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
      _TCNT                                       44       2       2       0   .abs_section_44
-     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TSCR2                                      4D       1       1       1   .abs_section_4d
      _TFLG1                                      4E       1       1       0   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
@@ -1623,12 +1604,12 @@ OBJECT LIST SORTED BY ADDRESS
      _ATD0DR5                                    9A       2       2       0   .abs_section_9a
      _ATD0DR6                                    9C       2       2       0   .abs_section_9c
      _ATD0DR7                                    9E       2       2       0   .abs_section_9e
-     _PWME                                       A0       1       1       0   .abs_section_a0
-     _PWMPOL                                     A1       1       1       0   .abs_section_a1
-     _PWMCLK                                     A2       1       1       0   .abs_section_a2
-     _PWMPRCLK                                   A3       1       1       0   .abs_section_a3
-     _PWMCAE                                     A4       1       1       0   .abs_section_a4
-     _PWMCTL                                     A5       1       1       0   .abs_section_a5
+     _PWME                                       A0       1       1       1   .abs_section_a0
+     _PWMPOL                                     A1       1       1       1   .abs_section_a1
+     _PWMCLK                                     A2       1       1       1   .abs_section_a2
+     _PWMPRCLK                                   A3       1       1       1   .abs_section_a3
+     _PWMCAE                                     A4       1       1       1   .abs_section_a4
+     _PWMCTL                                     A5       1       1       1   .abs_section_a5
      _PWMSCLA                                    A8       1       1       0   .abs_section_a8
      _PWMSCLB                                    A9       1       1       0   .abs_section_a9
      _PWMCNT01                                   AC       2       2       0   .abs_section_ac
@@ -1637,23 +1618,23 @@ OBJECT LIST SORTED BY ADDRESS
      _PWMCNT67                                   B2       2       2       0   .abs_section_b2
      _PWMPER01                                   B4       2       2       0   .abs_section_b4
      _PWMPER23                                   B6       2       2       0   .abs_section_b6
-     _PWMPER45                                   B8       2       2       0   .abs_section_b8
-     _PWMPER67                                   BA       2       2       0   .abs_section_ba
+     _PWMPER45                                   B8       2       2       1   .abs_section_b8
+     _PWMPER67                                   BA       2       2       1   .abs_section_ba
      _PWMDTY01                                   BC       2       2       0   .abs_section_bc
      _PWMDTY23                                   BE       2       2       0   .abs_section_be
-     _PWMDTY45                                   C0       2       2       0   .abs_section_c0
-     _PWMDTY67                                   C2       2       2       0   .abs_section_c2
+     _PWMDTY45                                   C0       2       2       2   .abs_section_c0
+     _PWMDTY67                                   C2       2       2       2   .abs_section_c2
      _PWMSDN                                     C4       1       1       0   .abs_section_c4
      _SCI0BD                                     C8       2       2       2   .abs_section_c8
      _SCI0CR1                                    CA       1       1       1   .abs_section_ca
-     _SCI0CR2                                    CB       1       1       3   .abs_section_cb
+     _SCI0CR2                                    CB       1       1       2   .abs_section_cb
      _SCI0SR1                                    CC       1       1       2   .abs_section_cc
      _SCI0SR2                                    CD       1       1       0   .abs_section_cd
      _SCI0DRH                                    CE       1       1       0   .abs_section_ce
      _SCI0DRL                                    CF       1       1       3   .abs_section_cf
      _SCI1BD                                     D0       2       2       2   .abs_section_d0
      _SCI1CR1                                    D2       1       1       1   .abs_section_d2
-     _SCI1CR2                                    D3       1       1       3   .abs_section_d3
+     _SCI1CR2                                    D3       1       1       2   .abs_section_d3
      _SCI1SR1                                    D4       1       1       2   .abs_section_d4
      _SCI1SR2                                    D5       1       1       0   .abs_section_d5
      _SCI1DRH                                    D6       1       1       0   .abs_section_d6
@@ -1867,55 +1848,45 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXDLR                                 2BC       1       1       0   .abs_section_2bc
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
-     str_ptr                                   1100       2       2       9   .data       
-     input_str_ptr                             1102       2       2       8   .data       
-     pbuf                                      1104       7       7      16   .bss        
-     SCI1_received                             110B       1       1       1   .bss        
-     SCI0_received                             110C       1       1       1   .bss        
-     serial_string                             110D      64     100       5   .common     
-     input_string                              1171      64     100       1   .common     
+     str_ptr                                   1300       2       2       6   .data       
+     input_str_ptr                             1302       2       2       8   .data       
+     SCI1_received                             1304       1       1       1   .bss        
+     SCI0_received                             1305       1       1       1   .bss        
+     serial_string                             1306      64     100       1   .common     
+     input_string                              136A      64     100       1   .common     
      _Startup                                  C000      15      21       0   .init       
-     pow10                                     C01F      28      40       4   .rodata     
-     pow16                                     C047      20      32       4   .rodata     
-     pow8                                      C067      2C      44       4   .rodata     
-     STRING..u..1                              C093       4       4       1   .rodata1    
-     _LCMP_P                                   C097      15      21       3   NON_BANKED  
-     _LNEG                                     C0AC       D      13       1   NON_BANKED  
-     _lDivMod                                  C0B9      BE     190       1   NON_BANKED  
-     _LDIVU                                    C177       E      14       2   NON_BANKED  
-     _ILSEXT                                   C185       7       7       2   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C18C       5       5       1   NON_BANKED  
-     _CASE_SEARCH_8                            C191      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C1A8      1A      26       1   NON_BANKED  
-     serial_interrupt_0                        C1C2      3A      58       1   NON_BANKED  
-     serial_interrupt_1                        C1FC      3A      58       1   NON_BANKED  
+     _LCMP_P                                   C01F      15      21       1   NON_BANKED  
+     _LINC                                     C034       5       5       1   NON_BANKED  
+     _lDivMod                                  C039      BE     190       1   NON_BANKED  
+     _LDIVU                                    C0F7       E      14       2   NON_BANKED  
+     _ILSEXT                                   C105       7       7       1   NON_BANKED  
+     serial_interrupt_0                        C10C      3A      58       1   NON_BANKED  
+     serial_interrupt_1                        C146      3A      58       1   NON_BANKED  
      _Vector_21                                FFD4       2       2       0   .abs_section_ffd4
      _Vector_20                                FFD6       2       2       0   .abs_section_ffd6
-     main                                    308000      64     100       2   .text       
-     Init                                    308064      29      41       2   .text       
-     vprintf                                 30808D     47B    1147      57   .text       
-     _out                                    308508       C      12       2   .text       
-     deposit_char                            308514       F      15       3   .text       
-     sprintf                                 308523      2F      47       2   .text       
-     initialise_serial                       308552      54      84       2   .text       
-     set_serial                              3085A6      1B      27       2   .text       
-     copy_string                             3085C1      29      41       2   .text       
-     output_string                           3085EA      2B      43       2   .text       
+     main                                    308000      6E     110       2   .text       
+     Init                                    30806E      29      41       2   .text       
+     initialise_serial                       308097      54      84       2   .text       
+     set_serial                              3080EB      1B      27       2   .text       
+     servo_init                              308106      2A      42       2   .text       
+     servo_goto                              308130      19      25       4   .text       
+     delay_in_ms                             308149      31      49       2   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
-PRINTF.C.o (ansibi.lib):
-  set_printf vsprintf 
 rtshc12.c.o (ansibi.lib):
   _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU 
-  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LINC _LDEC _LMUL 
+  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LNEG _LCOM _LDEC _LMUL 
   _LMULU16x32 _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT 
-  _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH _CASE_SEARCH_BYTE _FCALL _FPCMP 
+  _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH 
+  _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL _FPCMP 
 serial.c.o:
-  output_serial is_SCI1_received is_SCI0_received print_from_sci1 
-  print_from_sci0 
+  copy_string output_serial output_string is_SCI1_received is_SCI0_received 
+  print_from_sci1 print_from_sci0 
+servo_controller.c.o:
+  pan tilt servo_begin 
 NOT USED VARIABLES
 rtshc12.c.o (ansibi.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
@@ -1923,16 +1894,16 @@ rtshc12.c.o (ansibi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC236 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xC180 ---- SIZE       4 ---
 Filling bytes inserted
- 00041100
-------- ROM-ADDRESS: 0xC23A ---- RAM-ADDRESS: 0x1100 ---- SIZE       2 ---
+ 00041300
+------- ROM-ADDRESS: 0xC184 ---- RAM-ADDRESS: 0x1300 ---- SIZE       2 ---
 Name of initialized Object : str_ptr
- 110D
-------- ROM-ADDRESS: 0xC23C ---- RAM-ADDRESS: 0x1102 ---- SIZE       2 ---
+ 1306
+------- ROM-ADDRESS: 0xC186 ---- RAM-ADDRESS: 0x1302 ---- SIZE       2 ---
 Name of initialized Object : input_str_ptr
- 1171
-------- ROM-ADDRESS: 0xC23E ---- SIZE       2 ---
+ 136A
+------- ROM-ADDRESS: 0xC188 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1949,20 +1920,16 @@ serial_interrupt_1        USES _SCI1SR1 _SCI1DRL input_str_ptr SCI1_received
                                 str_ptr _SCI1CR2 
 _Vector_21                USES serial_interrupt_1 
 _Vector_20                USES serial_interrupt_0 
-main                      USES set_serial STRING..u..1 sprintf output_string 
+main                      USES set_serial servo_init servo_goto delay_in_ms 
 Init                      USES _startupData 
-vprintf                   USES vprintf _CASE_SEARCH_8_BYTE _CASE_DIRECT_BYTE 
-                                _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P pow16 pow10 
-                                _out 
-_out                      USES pbuf 
-deposit_char              USES pbuf 
-sprintf                   USES pbuf deposit_char vprintf 
 initialise_serial         USES _SCI1BD _LDIVU _SCI1CR1 _SCI1CR2 _SCI0BD 
                                 _SCI0CR1 _SCI0CR2 
 set_serial                USES initialise_serial 
-copy_string               USES serial_string 
-output_string             USES copy_string serial_string str_ptr _SCI1CR2 
-                                _SCI0CR2 
+servo_init                USES _PWMCLK _PWMPRCLK _PWMPOL _PWMCAE _PWMPER45 
+                                _PWMPER67 _PWMDTY45 _PWMDTY67 _PWMCTL _PWME _TSCR1 
+                                _TSCR2 
+servo_goto                USES _PWMDTY45 _PWMDTY67 
+delay_in_ms               USES _ILSEXT _LINC _LCMP_P 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -1979,29 +1946,17 @@ DEPENDENCY TREE
  |  |        | 
  |  |        +- _lDivMod            
  |  |             
- |  +- sprintf             
- |  |  | 
- |  |  +- deposit_char        
- |  |  |    
- |  |  +- vprintf             
- |  |     | 
- |  |     +- _CASE_SEARCH_8_BYTE 
- |  |     |    
- |  |     +- _CASE_DIRECT_BYTE   
- |  |     |    
- |  |     +- _CASE_SEARCH_8      
- |  |     |    
- |  |     +- _ILSEXT             
- |  |     |    
- |  |     +- _LNEG               
- |  |     |    
- |  |     +- _LCMP_P             
- |  |     |    
- |  |     +- _out                
- |  |          
- |  +- output_string       
+ |  +- servo_init          
+ |  |    
+ |  +- servo_goto          
+ |  |    
+ |  +- delay_in_ms         
  |     | 
- |     +- copy_string         
+ |     +- _ILSEXT             
+ |     |    
+ |     +- _LINC               
+ |     |    
+ |     +- _LCMP_P             
  |          
  +- _Startup            
     | 
@@ -2024,5 +1979,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 8
-Total size of all blocks to be downloaded: 2139
+Total size of all blocks to be downloaded: 778
 
