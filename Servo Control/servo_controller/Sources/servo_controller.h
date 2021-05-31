@@ -14,5 +14,7 @@ void tilt(int start_angle, int end_angle, int angle_step);
 // goes to specified servo position
 void servo_goto(int pan_angle, int tilt_angle);
 
+void servo_begin(void);
+
 
 #endif

@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\james\Documents\GitHub\MTRX2700-Final-Assignment\Servo Control\servo_controller\bin\Project.absHCS12_Serial_Monitor.abs"
+PROGRAM "C:\Users\Matthew\Desktop\mtrx2700\major_project\MTRX2700-Final-Assignment\Servo Control\servo_controller\bin\Project.absHCS12_Serial_Monitor.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -22,19 +22,19 @@ timers.c.o                              Model: BANKED,        Lang: ANSI-C
 STARTUP SECTION
 ---------------------------------------------------------------------------------------------
 Entry point: 0xC000 (_Startup)
-_startupData is allocated at 0xC00B and uses 6 Bytes
+_startupData is allocated at 0xC015 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     0
-  _Copy    *toCopyDownBeg 0xC015
+  _Copy    *toCopyDownBeg 0xC01F
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.init                             11     R     0xC000     0xC00A   ROM_C000
-.startData                        10     R     0xC00B     0xC014   ROM_C000
-.copy                              2     R     0xC015     0xC016   ROM_C000
+.init                             21     R     0xC000     0xC014   ROM_C000
+.startData                        10     R     0xC015     0xC01E   ROM_C000
+.copy                              2     R     0xC01F     0xC020   ROM_C000
 .text                            363     R   0x308000   0x30816A   PAGE_30
 .stack                           256   R/W     0x1000     0x10FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -381,7 +381,7 @@ Section Name                    Size  Type     From       To       Segment
 .vectSeg341_vect                   2     R     0xFFFE     0xFFFF   .vectSeg341
 
 Summary of section sizes per section type:
-READ_ONLY (R):         184 (dec:      388)
+READ_ONLY (R):         18E (dec:      398)
 READ_WRITE (R/W):      100 (dec:      256)
 NO_INIT (N/I):         190 (dec:      400)
 
@@ -746,9 +746,9 @@ MODULE:                 -- main.c.o --
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
      Init                                    308069      29      41       2   .text       
-     _Startup                                  C000       B      11       0   .init       
+     _Startup                                  C000      15      21       0   .init       
 - VARIABLES:
-     _startupData                              C00B       6       6       3   .startData  
+     _startupData                              C015       6       6       3   .startData  
 - LABELS:
      __SEG_END_SSTACK                          1100       0       0       1               
 MODULE:                 -- servo_controller.c.o --
@@ -769,7 +769,7 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   mc9s12dg256.c.o                            400      0      0
   main.c.o                                     0    105      0
-  Start12.c.o                                  0     52      0
+  Start12.c.o                                  0     62      0
   servo_controller.c.o                         0    183      0
   timers.c.o                                   0     34      0
   other                                      256     12      2
@@ -1809,7 +1809,7 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXDLR                                 2BC       1       1       0   .abs_section_2bc
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
-     _Startup                                  C000       B      11       0   .init       
+     _Startup                                  C000      15      21       0   .init       
      main                                    308000      69     105       2   .text       
      Init                                    308069      29      41       2   .text       
      servo_init                              308092      2A      42       2   .text       
@@ -1822,13 +1822,15 @@ OBJECT LIST SORTED BY ADDRESS
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
+servo_controller.c.o:
+  servo_begin 
 timers.c.o:
   Init_TC7 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC015 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC01F ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1880,5 +1882,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 5
-Total size of all blocks to be downloaded: 388
+Total size of all blocks to be downloaded: 398
 
