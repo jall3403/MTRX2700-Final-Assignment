@@ -34,19 +34,23 @@ First, to use the servo controller module, the `servo_init` function must be cal
 ### Testing
 This code was tested by providing dummy code that simulates possible servo postioning maneuvers that might be required during actual operation of the software. This allowed correct for determining appropriate buffer periods and speeds for which the LiDAR module can effectively operate in. 
 
-## LiDAR Module
+## LiDAR Modules
 
 ### Summary
-The LiDAR module deals with the measurement and transmission of the LiDAR data. 
+The LiDAR module deals with the measurement and transmission of the LiDAR data. There are two functions `LIDAR` and `LIDAR_INTERRUPT`. `LIDAR` uses a polling method to record both rising and falling edges. `LIDAR_INTERRUPT` uses interrupts to record both rising and falling edges. Neither work properly lmao  
 
 ### Valid input
-This module requires a trigger input that activates the LiDAR for the module to receive the measurement data. The LiDAR data is automatically sent as the termination of the measurement process.
+This module requires no inputs. The LiDAR functions trigger a measurment which is converted into a distance value in cm which is returned.
 
 ### Functions
-
+  - `LIDAR_INTERRUPT`
+  - `LIDAR`
+  
 ### How to Operate
+Just call function and it will return a distance value in the direction its facing.
 
 ### Testing
+It was tested by measuring a predetermined distance of 30cm and then comparing to the value it returned. It was either too far or way too short, not working properly not sure why.
 
 ## MATLAB LiDAR Processing Module
 
